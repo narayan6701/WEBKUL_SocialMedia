@@ -105,4 +105,50 @@ function createUser($data){
     return mysqli_query($db, $query);   
 }
 
+//for validating the login
+function validateLoginForm($form_data){
+    $response = array();
+    $response['status'] = true;
+    $blank=false;
+
+    if(!$form_data['password']){
+        $response['msg'] = 'Password is required';
+        $response['status'] = false; 
+        $response['field'] = 'password';
+        $blank=true;
+    }
+    if(!$form_data['username_email']){
+        $response['msg'] = 'Username/email is required';
+        $response['status'] = false;
+        $response['field'] = 'username_email';
+        $blank=true;
+    }
+    if(!$blank && !checkUser($form_data)['status']){
+        $response['msg'] = 'something is incorrect, we can\'t find you';
+        $response['status'] = false;
+        $response['field'] = 'checkuser';
+    }
+    else{
+        $response['user'] = checkUser($form_data)['user'];
+    }
+      
+    return $response;
+}
+
+//for checking the user
+function checkUser($login_data){
+    global $db;
+    $username_email = $login_data['username_email'];
+    $password = md5($login_data['password']);
+    $query = "SELECT * FROM users WHERE (username='$username_email' OR email='$username_email') AND password='$password'";
+    $run = mysqli_query($db, $query);
+    $data['user'] = mysqli_fetch_assoc($run)??array();;
+    if(count($data['user'])>0){
+        $data['status'] = true;
+    }
+    else{
+        $data['status'] = false;
+    }
+    return $data;
+}
 ?>
