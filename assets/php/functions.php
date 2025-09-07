@@ -151,4 +151,21 @@ function checkUser($login_data){
     }
     return $data;
 }
+
+// for getting user data by id
+function getUser($user_id){
+    global $db;
+    
+    $query = "SELECT * FROM users WHERE id=$user_id";
+    $run = mysqli_query($db, $query);
+    return mysqli_fetch_assoc($run);  
+}
+
+// function for verifying email
+function verifyEmail($email){
+   global $db;
+    $query = "UPDATE users SET ac_status=1 WHERE email='$email'";
+    return mysqli_query($db, $query);
+}
+
 ?>
