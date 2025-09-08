@@ -73,3 +73,19 @@ if(isset($_GET['logout'])){
     session_destroy();
     header("location: ../../");
 }
+
+if(isset($_GET['updateprofile'])){
+    $response = validateUpdateForm($_POST, $_FILES['profile_pic']);
+    if($response['status']){
+      if(updateProfile($_POST, $_FILES['profile_pic'])){
+        header("location: ../../?editprofile&success");
+      }
+      else{
+        echo "something went wrong";
+      }
+    }
+    else{
+        $_SESSION['error'] = $response;
+        header("location: ../../?editprofile");
+    }
+}

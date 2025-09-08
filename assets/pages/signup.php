@@ -1,11 +1,19 @@
     <div class="login">
         <div class="col-4 bg-white border rounded p-4 shadow-sm">
-            <form method="POST" action="assets/php/actions.php?signup">
+            <form method="POST" action="assets/php/actions.php?signup" enctype="multipart/form-data">
                 <div class="d-flex justify-content-center">
 
                     <img class="mb-4" src="assets/images/pictogram.png" alt="" height="45">
                 </div>
                 <h1 class="h5 mb-3 fw-normal">Create new account</h1>
+                 <div class="form-floating mt-1 col-6">
+        <img src="assets/images/profile/default_profile.jpg" name="profile_pic" class="img-thumbnail my-3" style="height:150px;" alt="Profile Picture">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Profile Picture</label>
+            <input class="form-control" name="profile_pic" type="file" id="formFile">
+        </div>
+        <?=showError('profile_pic')?>
+    </div>
                 <div class="d-flex">
                     <div class="form-floating mt-1 col-6 ">
                         <input type="text" class="form-control rounded-0" placeholder="username/email" name="first_name" value="<?=showFormData('first_name')?>">
@@ -68,6 +76,15 @@
 
 
                 </div>
+                <script>
+document.getElementById('formFile').addEventListener('change', function(event) {
+    const [file] = event.target.files;
+    if (file) {
+        const img = document.querySelector('img[name="profile_pic"]');
+        img.src = URL.createObjectURL(file);
+    }
+});
+</script>
 
             </form>
         </div>

@@ -10,12 +10,6 @@
 
                 </a>
 
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="looking for someone.."
-                        aria-label="Search">
-
-                </form>
-
             </div>
 
 
@@ -26,12 +20,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="#"><i class="bi bi-plus-square-fill"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#"><i class="bi bi-bell-fill"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#"><i class="bi bi-chat-right-dots-fill"></i></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
