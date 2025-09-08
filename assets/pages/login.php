@@ -1,5 +1,4 @@
-
-    <div class="login">
+<div class="login">
         <div class="col-4 bg-white border rounded p-4 shadow-sm">
             <form method="POST" action="assets/php/actions.php?login">
                 <div class="d-flex justify-content-center">
@@ -24,10 +23,7 @@
                 <div class="mt-3 d-flex justify-content-between align-items-center">
                     <button class="btn btn-primary" type="submit">Sign in</button>
                     <a href="?signup" class="text-decoration-none">Create New Account</a>
-
-
                 </div>
-                <a href="#" class="text-decoration-none">Forgot password ?</a>
             </form>
         </div>
     </div>

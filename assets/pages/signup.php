@@ -41,6 +41,11 @@
                         </label>
                     </div>
                 </div>
+ <div class="form-floating mt-1">
+                    <input type="date" name="dob" class="form-control rounded-0" placeholder="Date of Birth" value="<?=showFormData('dob')?>">
+                    <label for="floatingInput">Date of Birth</label>
+                </div>
+                <?=showError('dob')?>
                 <div class="form-floating mt-1">
                     <input type="email" name="email" class="form-control rounded-0" placeholder="username/email"  value="<?=showFormData('email')?>">
                     <label for="floatingInput">email</label>

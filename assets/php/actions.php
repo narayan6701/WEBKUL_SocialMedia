@@ -65,6 +65,11 @@ if(isset($_GET['verify_email'])){
         $response['field'] = 'email_verify';
         $_SESSION['error'] = $response;
         header("location: ../../");
-
     }
+}
+
+//for managing logout
+if(isset($_GET['logout'])){
+    session_destroy();
+    header("location: ../../");
 }
