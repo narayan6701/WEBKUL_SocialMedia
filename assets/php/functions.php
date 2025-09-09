@@ -122,7 +122,7 @@ function validateSignupForm($form_data){
 }
 
 //for creating new user
-function createUser($data){
+function createUser($data, $image_data){
     global $db;
     $first_name = mysqli_real_escape_string($db, $data['first_name']);
     $last_name = mysqli_real_escape_string($db, $data['last_name']);
@@ -132,7 +132,11 @@ function createUser($data){
     $username = mysqli_real_escape_string($db, $data['username']);
     $password = mysqli_real_escape_string($db, $data['password']);
     $password = password_hash($password, PASSWORD_BCRYPT); //password encryption
-    $query = "INSERT INTO users (first_name, last_name, gender, dob, email, username, password) VALUES ('$first_name', '$last_name', $gender, '$dob', '$email', '$username', '$password')";
+    if (!empty($image_data['name'])) {
+        $image = time() . basename($image_data['name']);
+        move_uploaded_file($image_data['tmp_name'], "../images/profile/" . $image);
+    }
+    $query = "INSERT INTO users (profile_pic, first_name, last_name, gender, dob, email, username, password) VALUES ('$image', '$first_name', '$last_name', '$gender', '$dob', '$email', '$username', '$password')";
     return mysqli_query($db, $query);   
 }
 
@@ -162,7 +166,6 @@ function validateLoginForm($form_data){
     else{
         $response['user'] = checkUser($form_data)['user'];
     }
-      
     return $response;
 }
 
