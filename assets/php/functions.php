@@ -124,6 +124,7 @@ function validateSignupForm($form_data){
 //for creating new user
 function createUser($data, $image_data){
     global $db;
+
     $first_name = mysqli_real_escape_string($db, $data['first_name']);
     $last_name = mysqli_real_escape_string($db, $data['last_name']);
     $gender =  $data['gender'];
@@ -131,14 +132,25 @@ function createUser($data, $image_data){
     $email = mysqli_real_escape_string($db, $data['email']);
     $username = mysqli_real_escape_string($db, $data['username']);
     $password = mysqli_real_escape_string($db, $data['password']);
-    $password = password_hash($password, PASSWORD_BCRYPT); //password encryption
+    $password = password_hash($password, PASSWORD_BCRYPT); // password encryption
+
+    // Initialize query components
+    $columns = "first_name, last_name, gender, dob, email, username, password";
+    $values = "'$first_name', '$last_name', '$gender', '$dob', '$email', '$username', '$password'";
+
+    // Handle image if provided
     if (!empty($image_data['name'])) {
         $image = time() . basename($image_data['name']);
         move_uploaded_file($image_data['tmp_name'], "../images/profile/" . $image);
+        $columns .= ", profile_pic";
+        $values .= ", '$image'";
     }
-    $query = "INSERT INTO users (profile_pic, first_name, last_name, gender, dob, email, username, password) VALUES ('$image', '$first_name', '$last_name', '$gender', '$dob', '$email', '$username', '$password')";
-    return mysqli_query($db, $query);   
+
+    // Final query
+    $query = "INSERT INTO users ($columns) VALUES ($values)";
+    return mysqli_query($db, $query);
 }
+
 
 //for validating the login
 function validateLoginForm($form_data){
