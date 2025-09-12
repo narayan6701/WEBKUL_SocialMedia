@@ -1,8 +1,10 @@
 <?php
 
 require_once('assets/php/functions.php');
+
 if(isset($_SESSION['Auth'])){
     $user = getUser($_SESSION['userdata']['id']);
+    $posts = getPosts();
 }
 
 $pagecount = count($_GET);

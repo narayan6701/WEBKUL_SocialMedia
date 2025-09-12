@@ -329,6 +329,59 @@ switch ($gender_input) {
     return mysqli_query($db, $query);
 }
 
+// for validating add post form
+function validatePostImage($image_data){
 
+    $response = array();
+    $response['status'] = true;
+
+    if(!$image_data['name']){
+        $response['msg'] = "No Image is Selected";
+        $response['status'] = false;
+        $response['field'] = 'post_img';
+    }
+
+    if (isset($_FILES['post_img']) && $_FILES['post_img']['error'] == UPLOAD_ERR_OK) {
+        $allowed_types = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+        $file_type = $_FILES['post_img']['type'];
+        $file_size = $_FILES['post_img']['size'];
+        if (!in_array($file_type, $allowed_types)) {
+            $response['msg'] = 'Post image must be an image (jpg, png, webp)';
+            $response['status'] = false;
+            $response['field'] = 'post_img';
+        } elseif ($file_size > 10 * 1024 * 1024) {
+            $response['msg'] = 'Post image must be less than 10 MB';
+            $response['status'] = false;
+            $response['field'] = 'post_img';
+        }
+    }
+
+    return $response;
+}
+
+// for adding new post
+function createPost($post_text, $image){
+    global $db;
+    $post_text = mysqli_real_escape_string($db, $text['post_text']);
+    $user_id = $_SESSION['userdata']['id'];
+
+        $image_name = time().basename($image['name']);
+        $image_dir="../images/posts/".$image_name;
+        move_uploaded_file($image['tmp_name'], $image_dir);
+
+    $query = "INSERT INTO posts (user_id, post_text, post_img)";
+    $query .= " VALUES ($user_id, '$post_text', '$image_name')";
+
+    return mysqli_query($db, $query);
+}
+
+// for getting posts
+function getPosts(){
+    global $db;
+    $query = "SELECT posts.id, posts.user_id, posts.post_img, posts.post_text,posts.created_at, users.first_name, users.last_name, users.username, users.profile_pic FROM posts JOIN users ON users.id=posts.user_id ";
+
+$run = mysqli_query($db, $query);
+return mysqli_fetch_all($run, true);
+}
 
 ?>
