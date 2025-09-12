@@ -355,19 +355,18 @@ function validatePostImage($image_data){
             $response['field'] = 'post_img';
         }
     }
-
     return $response;
 }
 
 // for adding new post
-function createPost($post_text, $image){
+function createPost($text, $image){
     global $db;
     $post_text = mysqli_real_escape_string($db, $text['post_text']);
     $user_id = $_SESSION['userdata']['id'];
 
-        $image_name = time().basename($image['name']);
-        $image_dir="../images/posts/".$image_name;
-        move_uploaded_file($image['tmp_name'], $image_dir);
+    $image_name = time().basename($image['name']);
+    $image_dir="../images/posts/".$image_name;
+    move_uploaded_file($image['tmp_name'], $image_dir);
 
     $query = "INSERT INTO posts (user_id, post_text, post_img)";
     $query .= " VALUES ($user_id, '$post_text', '$image_name')";

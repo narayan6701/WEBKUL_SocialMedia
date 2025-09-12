@@ -13,7 +13,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Say Something</label>
-                        <textarea ame="post_text" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                        <textarea name="post_text" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
                     </div>
                 <button type="submit" class="btn btn-primary">Post</button>
                 </form>

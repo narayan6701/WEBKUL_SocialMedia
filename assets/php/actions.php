@@ -6,7 +6,7 @@ require_once('send_code.php');
 if(isset($_GET['signup'])){
     $response = validateSignupForm($_POST);
     if($response['status']){
-       if(createUser($_POST, $_FILES['profile_pic'])){
+       if(createUser($_POST['post_text'], $_FILES['profile_pic'])){
         header("location: ../../?login&newuser");
        }
        else{
