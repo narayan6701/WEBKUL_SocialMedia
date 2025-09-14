@@ -62,6 +62,9 @@ function isUsernameRegisteredByOther($username){
 function validateSignupForm($form_data){
     $response = array();
     $response['status'] = true;
+    $p1 = $form_data['password'];
+    $p2 = $form_data['password2'];
+    
 
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == UPLOAD_ERR_OK) {
         $allowed_types = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
@@ -82,6 +85,12 @@ function validateSignupForm($form_data){
         $response['msg'] = 'Password is required';
         $response['status'] = false; 
         $response['field'] = 'password';
+    }
+    if($p1 != $p2){
+        $response['msg'] = 'Password mismatch';
+        $response['status'] = false; 
+        $response['field'] = 'password2';
+        $blank=true;
     }
     if(!$form_data['username']){
         $response['msg'] = 'Username is required';
@@ -164,6 +173,7 @@ function validateLoginForm($form_data){
         $response['field'] = 'password';
         $blank=true;
     }
+    
     if(!$form_data['username_email']){
         $response['msg'] = 'Username/email is required';
         $response['status'] = false;
