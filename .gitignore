@@ -5,3 +5,4 @@ assets/images/profile/*
 
 # But keep default_profile.jpg
 !assets/images/profile/default_profile.jpg
+!assets/images/profile/posts/.gitkeep
