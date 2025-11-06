@@ -1,8 +1,7 @@
 desktop.ini
-assets/images/posts/*
 # Untrack all files in assets/images/profile
 assets/images/profile/*
-
+assets/images/posts/*
 # But keep default_profile.jpg
 !assets/images/profile/default_profile.jpg
-!assets/images/profile/posts/.gitkeep
+!assets/images/posts/1762472166Aurora.jpg
