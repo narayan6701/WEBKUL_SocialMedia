@@ -1,1 +1,7 @@
 desktop.ini
+posts
+# Untrack all files in assets/images/profile
+assets/images/profile/*
+
+# But keep default_profile.jpg
+!assets/images/profile/default_profile.jpg
