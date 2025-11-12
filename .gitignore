@@ -4,4 +4,3 @@ assets/images/profile/*
 assets/images/posts/*
 # But keep defaults
 !assets/images/profile/default_profile.jpg
-!assets/images/posts/1762472166Aurora.jpg

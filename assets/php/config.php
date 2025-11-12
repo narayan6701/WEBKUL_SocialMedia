@@ -4,7 +4,7 @@ session_start();
 const DB_NAME = 'pictogram';
 const DB_HOST = 'localhost';
 const DB_USER = 'root';
-const DB_PASS = '2001';
+const DB_PASS = '';
 
 // Attempt to connect to MySQL server (without selecting a database) so
 // we can create the database if it doesn't exist and initialize schema
